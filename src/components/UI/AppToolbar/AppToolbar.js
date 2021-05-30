@@ -12,7 +12,7 @@ import UserMenu from './Menus/UserMenu';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    backgroundColor: theme.palette.common.black,
+    // backgroundColor: theme.palette.common.black,
   },
   mainLink: {
     color: 'inherit',

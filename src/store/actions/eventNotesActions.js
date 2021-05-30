@@ -10,7 +10,7 @@ import {
   GET_EVENTS_SUCCESS,
 } from '../actionTypes';
 
-export const fetchGetRequest = () => {
+export const GetNotes = () => {
   return { type: GET_EVENTS_REQUEST };
 };
 

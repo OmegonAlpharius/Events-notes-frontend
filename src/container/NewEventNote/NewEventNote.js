@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Button } from '@material-ui/core';
 import FormElement from '../../components/UI/Form/FormElement/FormElement';
-
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { createNote } from '../../store/actions/eventNotesActions';
 import { DateTimePicker } from '@material-ui/pickers';
 
@@ -35,8 +33,7 @@ const NewEventNote = (props) => {
       return undefined;
     }
   };
-  console.log(state);
-  console.log(getFieldError('dateTime'));
+
   return (
     <form onSubmit={formSubmitHandler}>
       <Grid container direction='column' spacing={2}>
@@ -53,6 +50,7 @@ const NewEventNote = (props) => {
         <Grid item xs={12}>
           <DateTimePicker
             disablePast
+            ampm={false}
             fullWidth
             inputVariant='outlined'
             label='Date and time '

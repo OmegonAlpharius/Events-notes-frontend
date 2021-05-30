@@ -10,7 +10,8 @@ import NewEventNote from './container/NewEventNote/NewEventNote';
 import Layout from './components/UI/Layout/Layout';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-const darkTheme = createMuiTheme({
+import EventNotes from './container/EventNotes/EventNotes';
+const Theme = createMuiTheme({
   palette: {
     type: 'light',
   },
@@ -19,7 +20,7 @@ const darkTheme = createMuiTheme({
 function App() {
   const user = useSelector((state) => state.users.user);
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={Theme}>
       <MuiPickersUtilsProvider utils={MomentUtils}>
         <CssBaseline />
         <Layout>
@@ -32,6 +33,13 @@ function App() {
               redirectTo={'/login'}
               exact
               component={NewEventNote}
+            />
+            <ProtectedRoute
+              path='/'
+              isAllowed={user !== null}
+              redirectTo={'/login'}
+              exact
+              component={EventNotes}
             />
 
             {!user && <Redirect to='login' />}

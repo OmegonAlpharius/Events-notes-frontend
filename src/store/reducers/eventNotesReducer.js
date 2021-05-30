@@ -11,7 +11,7 @@ import {
 } from '../actionTypes';
 
 const initialState = {
-  tracks: [],
+  eventNotes: [],
   loading: false,
   error: null,
   createError: null,
