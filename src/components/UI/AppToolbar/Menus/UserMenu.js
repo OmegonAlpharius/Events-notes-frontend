@@ -1,26 +1,18 @@
-import { useDispatch } from 'react-redux';
-import { Button, Typography, Grid } from '@material-ui/core';
-import { logoutUser } from '../../../../store/actions/usersActions';
+import React from 'react';
+import { Button, Grid } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import DropDownMenu from './DropDownMenu/DropDownMenu';
 
 const UserMenu = ({ user }) => {
-  const dispatch = useDispatch();
-
-  const logout = () => {
-    dispatch(logoutUser());
-  };
-
   return (
-    <Grid container alignItems='center'>
-      <Typography> Welcome, {user.username}</Typography>
+    <Grid item>
+      <Grid container>
+        <Button component={Link} to='/event-note/new' color='inherit'>
+          Add new event
+        </Button>
 
-      <Button
-        aria-controls='fade-menu'
-        aria-haspopup='true'
-        onClick={logout}
-        color='inherit'
-      >
-        Logout
-      </Button>
+        <DropDownMenu user={user} />
+      </Grid>
     </Grid>
   );
 };
