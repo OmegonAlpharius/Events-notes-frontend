@@ -13,7 +13,6 @@ const EventNotes = () => {
   useEffect(() => {
     dispatch(GetNotes());
   }, [dispatch]);
-  console.log(user);
   return (
     <Box display='flex' flexWrap='wrap'>
       <Preloader show={state.loading} />
@@ -24,8 +23,9 @@ const EventNotes = () => {
             key={item._id}
             title={item.title}
             dateTime={item.dateTime}
-            name={isCreator ? 'My' : item.creator.username}
+            name={isCreator ? 'Me' : item.creator.username}
             editable={isCreator}
+            duration={'3 hours'}
           />
         );
       })}

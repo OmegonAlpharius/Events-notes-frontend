@@ -11,9 +11,11 @@ import Layout from './components/UI/Layout/Layout';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import EventNotes from './container/EventNotes/EventNotes';
+import { indigo, purple } from '@material-ui/core/colors';
 const Theme = createMuiTheme({
   palette: {
-    type: 'light',
+    primary: purple,
+    secondary: indigo,
   },
 });
 

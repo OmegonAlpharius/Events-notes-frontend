@@ -3,13 +3,14 @@ import { Grid, Button } from '@material-ui/core';
 import FormElement from '../../components/UI/Form/FormElement/FormElement';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNote } from '../../store/actions/eventNotesActions';
-import { DateTimePicker } from '@material-ui/pickers';
+import { KeyboardDateTimePicker } from '@material-ui/pickers';
 
 const NewEventNote = (props) => {
   const error = useSelector((state) => state.eventNotes.createError);
   const dispatch = useDispatch();
   const [state, setState] = useState({
     title: '',
+    duration: '',
     dateTime: new Date(),
   });
 
@@ -17,6 +18,11 @@ const NewEventNote = (props) => {
     const { name, value } = e.target;
     setState((prevState) => {
       return { ...prevState, [name]: value };
+    });
+  };
+  const dateTimePickerHandler = (dateTime) => {
+    setState((prevState) => {
+      return { ...prevState, dateTime };
     });
   };
 
@@ -46,19 +52,32 @@ const NewEventNote = (props) => {
           value={state.title}
           type='text'
           error={getFieldError('title')}
+          required
+        />
+        <FormElement
+          fullWidth
+          variant='outlined'
+          label='Event duration'
+          name='duration'
+          onChange={inputChangeHandler}
+          value={state.duration}
+          type='text'
+          error={getFieldError('duration')}
         />
         <Grid item xs={12}>
-          <DateTimePicker
+          <KeyboardDateTimePicker
             disablePast
             ampm={false}
             fullWidth
             inputVariant='outlined'
             label='Date and time '
             name='dateTime'
-            onChange={inputChangeHandler}
+            onChange={dateTimePickerHandler}
             value={state.datetime}
             helperText={getFieldError('dateTime')}
             error={!!getFieldError('dateTime')}
+            variant='inline'
+            required
           />
         </Grid>
         <Grid item>
