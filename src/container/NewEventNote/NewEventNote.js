@@ -20,9 +20,9 @@ const NewEventNote = (props) => {
       return { ...prevState, [name]: value };
     });
   };
-  const dateTimePickerHandler = (dateTime) => {
+  const dateTimePickerHandler = (date) => {
     setState((prevState) => {
-      return { ...prevState, dateTime };
+      return { ...prevState, dateTime: Date.parse(date) };
     });
   };
 
@@ -39,7 +39,7 @@ const NewEventNote = (props) => {
       return undefined;
     }
   };
-
+  console.log(state);
   return (
     <form onSubmit={formSubmitHandler}>
       <Grid container direction='column' spacing={2}>
@@ -73,11 +73,13 @@ const NewEventNote = (props) => {
             label='Date and time '
             name='dateTime'
             onChange={dateTimePickerHandler}
-            value={state.datetime}
+            autoOk
+            value={state.dateTime}
             helperText={getFieldError('dateTime')}
             error={!!getFieldError('dateTime')}
-            variant='inline'
+            variant='dialog'
             required
+            format='yyyy/MM/DD HH:mm'
           />
         </Grid>
         <Grid item>

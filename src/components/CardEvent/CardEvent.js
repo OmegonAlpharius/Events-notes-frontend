@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'right',
     fontFamily: 'Bad Script',
     lineHeight: 1.7,
+    textTransform: 'capitalize',
   },
 }));
 
