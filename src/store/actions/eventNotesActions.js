@@ -34,7 +34,7 @@ export const createRequestSuccess = () => {
   return { type: CREATE_EVENT_SUCCESS };
 };
 
-export const fetchDeleteRequest = (payload) => {
+export const deleteNote = (payload) => {
   return { type: DELETE_EVENT_REQUEST, payload };
 };
 

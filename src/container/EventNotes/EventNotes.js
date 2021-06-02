@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Box } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import CardEvent from '../../components/CardEvent/CardEvent';
-import { GetNotes } from '../../store/actions/eventNotesActions';
+import { GetNotes, deleteNote } from '../../store/actions/eventNotesActions';
 import Preloader from '../../components/UI/Preloader/Preloader';
 
 const EventNotes = () => {
@@ -13,6 +13,11 @@ const EventNotes = () => {
   useEffect(() => {
     dispatch(GetNotes());
   }, [dispatch]);
+
+  const onDeleteHandler = (id) => {
+    dispatch(deleteNote(id));
+  };
+
   return (
     <Box display='flex' flexWrap='wrap'>
       <Preloader show={state.loading} />
@@ -25,7 +30,8 @@ const EventNotes = () => {
             dateTime={item.dateTime}
             name={isCreator ? 'Me' : item.creator.username}
             editable={isCreator}
-            duration={'3 hours'}
+            duration={item.duration}
+            onDelete={() => onDeleteHandler(item._id)}
           />
         );
       })}

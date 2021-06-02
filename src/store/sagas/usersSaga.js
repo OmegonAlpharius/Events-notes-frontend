@@ -8,6 +8,8 @@ import {
   loginUserSuccess,
   loginUserFailure,
   logoutUserSuccess,
+  fetchGetUsersSuccess,
+  subscribeUsersSuccess,
 } from '../actions/usersActions';
 
 export function* registerUserSaga({ userData }) {
@@ -49,5 +51,26 @@ export function* logoutUserSaga() {
     yield NotificationManager.success('Logout success');
   } catch (e) {
     yield NotificationManager.error('Logout failure');
+  }
+}
+
+export function* getUsersSaga() {
+  try {
+    const response = yield axios.get('/users');
+
+    yield put(fetchGetUsersSuccess(response.data));
+  } catch (e) {
+    console.log(e);
+  }
+}
+export function* subscribeUserSaga({ payload }) {
+  try {
+    console.log(payload);
+    const response = yield axios.post(`/users/subscribe?id=${payload}`);
+    yield NotificationManager.success('Subscribe success');
+    yield put(subscribeUsersSuccess(response.data));
+  } catch (e) {
+    console.log(e);
+    yield NotificationManager.error('Subscribe failure');
   }
 }

@@ -39,7 +39,7 @@ const NewEventNote = (props) => {
       return undefined;
     }
   };
-  console.log(state);
+
   return (
     <form onSubmit={formSubmitHandler}>
       <Grid container direction='column' spacing={2}>

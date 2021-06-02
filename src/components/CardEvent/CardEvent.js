@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardEvent = ({ title, dateTime, name, editable, duration }) => {
+const CardEvent = ({ title, dateTime, name, editable, duration, onDelete }) => {
   const classes = useStyles();
   return (
     <Card elevation={5} className={classes.root}>
@@ -71,7 +71,7 @@ const CardEvent = ({ title, dateTime, name, editable, duration }) => {
           {name}
         </Typography>
         {editable && (
-          <IconButton>
+          <IconButton onClick={onDelete}>
             <DeleteIcon />
           </IconButton>
         )}

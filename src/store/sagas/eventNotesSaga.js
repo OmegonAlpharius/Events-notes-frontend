@@ -5,13 +5,15 @@ import axios from '../../axios-api';
 import {
   createRequestFailure,
   createRequestSuccess,
+  deleteRequestFailure,
+  deleteRequestSuccess,
   fetchGetRequestFailure,
   fetchGetRequestSuccess,
+  GetNotes,
 } from '../actions/eventNotesActions';
 
 export function* createNoteSaga({ payload }) {
   try {
-    console.log('createNoteSaga');
     yield axios.post('/events', payload);
     yield put(createRequestSuccess());
     yield put(push('/'));
@@ -25,11 +27,21 @@ export function* createNoteSaga({ payload }) {
 }
 export function* getNotesSaga() {
   try {
-    console.log('createNoteSaga');
     const response = yield axios.get('/events');
     yield put(fetchGetRequestSuccess(response.data));
   } catch (e) {
     yield put(fetchGetRequestFailure(e));
+    console.log(e.response);
+    yield NotificationManager.error(e.message);
+  }
+}
+export function* deleteNotesSaga({ payload }) {
+  try {
+    const response = yield axios.delete(`/events?id=${payload}`);
+    yield put(deleteRequestSuccess(response.data));
+    yield put(GetNotes());
+  } catch (e) {
+    yield put(deleteRequestFailure(e));
     console.log(e.response);
     yield NotificationManager.error(e.message);
   }

@@ -6,14 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { Container, Grid } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-
 import AnonymousMenu from './Menus/AnonymousMenu';
 import UserMenu from './Menus/UserMenu';
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    // backgroundColor: theme.palette.common.black,
-  },
   mainLink: {
     color: 'inherit',
     textDecoration: 'none',
