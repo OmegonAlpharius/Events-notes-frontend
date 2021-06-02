@@ -59,6 +59,9 @@ const ShareForm = ({ options = [], onSubmit }) => {
   const [value, setValue] = useState('');
 
   const submitHandler = (e) => {
+    setValue('');
+    setInputValue('');
+
     e.preventDefault();
     onSubmit(value);
   };
@@ -73,6 +76,8 @@ const ShareForm = ({ options = [], onSubmit }) => {
           <SearchIcon />
         </div>
         <Autocomplete
+          freeSolo
+          disableClearable
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
@@ -82,8 +87,6 @@ const ShareForm = ({ options = [], onSubmit }) => {
             setInputValue(newInputValue);
           }}
           style={{ width: 300, color: 'inherit' }}
-          freeSolo
-          disableClearable
           options={options}
           getOptionLabel={(option) => {
             return option.email || '';
@@ -104,7 +107,12 @@ const ShareForm = ({ options = [], onSubmit }) => {
             );
           }}
         />
-        <IconButton size='small' color='inherit' type={'submit'}>
+        <IconButton
+          disabled={!value}
+          size='small'
+          color='inherit'
+          type={'submit'}
+        >
           <ShareIcon />
         </IconButton>
       </Paper>

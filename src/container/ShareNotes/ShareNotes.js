@@ -11,7 +11,6 @@ const ShareNotes = () => {
   }, [dispatch]);
 
   const onSubmitHandler = (value) => {
-    console.log(value);
     dispatch(subscribeUser(value._id));
   };
 
