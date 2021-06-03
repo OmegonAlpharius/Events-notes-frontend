@@ -5,7 +5,10 @@ import CardEvent from '../../components/CardEvent/CardEvent';
 import { GetNotes, deleteNote } from '../../store/actions/eventNotesActions';
 import Preloader from '../../components/UI/Preloader/Preloader';
 import UsersList from '../../components/UsersList/UsersList';
-import { getSubscribers } from '../../store/actions/usersActions';
+import {
+  getSubscribers,
+  unsubscribeUser,
+} from '../../store/actions/usersActions';
 
 const EventNotes = () => {
   const dispatch = useDispatch();
@@ -20,11 +23,14 @@ const EventNotes = () => {
   const onDeleteHandler = (id) => {
     dispatch(deleteNote(id));
   };
+  const onUnsubscribeHandler = (id) => {
+    dispatch(unsubscribeUser(id));
+  };
 
   return (
     <Grid container direction='row' wrap='nowrap'>
       <Preloader show={state.loading} />
-      <UsersList users={user.subscribers} />
+      <UsersList users={user.subscribers} onDelete={onUnsubscribeHandler} />
       <Box display='flex' flexWrap='wrap'>
         {state.eventNotes.map((item) => {
           const isCreator = user._id === item.creator._id;

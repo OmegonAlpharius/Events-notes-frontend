@@ -61,7 +61,7 @@ const reducer = (state = initialState, action) => {
     case GET_SUBSCRIBERS_FAILURE:
       return { ...state, error: action.error };
     case GET_SUBSCRIBERS_SUCCESS:
-      return { ...state, subscribers: action.payload };
+      return { ...state, user: action.payload };
     default:
       return state;
   }

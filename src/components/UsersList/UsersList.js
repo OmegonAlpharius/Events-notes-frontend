@@ -1,12 +1,16 @@
 import {
   Drawer,
+  IconButton,
   List,
   ListItem,
+  ListItemSecondaryAction,
   ListItemText,
+  ListSubheader,
   makeStyles,
   Toolbar,
 } from '@material-ui/core';
 import React from 'react';
+import UnsubscribeIcon from '@material-ui/icons/Unsubscribe';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UsersList = ({ users = [] }) => {
-  console.log(users);
+const UsersList = ({ users = [], onDelete }) => {
   const classes = useStyles();
   return (
     <Drawer
@@ -40,11 +43,22 @@ const UsersList = ({ users = [] }) => {
     >
       <Toolbar />
       <div className={classes.drawerContainer}>
-        <List>
+        <List
+          subheader={<ListSubheader component='div'>Subscribers</ListSubheader>}
+        >
           {users.map((item) => {
             return (
               <ListItem key={item._id}>
                 <ListItemText primary={item.username} />
+                <ListItemSecondaryAction>
+                  <IconButton
+                    onClick={() => onDelete(item._id)}
+                    edge='end'
+                    aria-label='delete'
+                  >
+                    <UnsubscribeIcon />
+                  </IconButton>
+                </ListItemSecondaryAction>
               </ListItem>
             );
           })}
