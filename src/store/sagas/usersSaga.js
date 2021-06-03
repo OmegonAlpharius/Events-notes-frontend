@@ -10,6 +10,11 @@ import {
   logoutUserSuccess,
   fetchGetUsersSuccess,
   subscribeUsersSuccess,
+  unsubscribeUsersSuccess,
+  unsubscribeUsersFailure,
+  subscribeUsersFailure,
+  getSubscribersSuccess,
+  getSubscribersFailure,
 } from '../actions/usersActions';
 
 export function* registerUserSaga({ userData }) {
@@ -65,12 +70,34 @@ export function* getUsersSaga() {
 }
 export function* subscribeUserSaga({ payload }) {
   try {
-    console.log(payload);
     const response = yield axios.post(`/users/subscribe?id=${payload}`);
     yield NotificationManager.success('Subscribe success');
     yield put(subscribeUsersSuccess(response.data));
   } catch (e) {
     console.log(e);
+    yield put(subscribeUsersFailure(e));
     yield NotificationManager.error('Subscribe failure');
+  }
+}
+export function* unsubscribeUserSaga({ payload }) {
+  try {
+    const response = yield axios.delete(`/users/subscribe?id=${payload}`);
+    yield NotificationManager.success('Unsubscribe success');
+    yield put(unsubscribeUsersSuccess(response.data));
+  } catch (e) {
+    console.log(e);
+    yield put(unsubscribeUsersFailure(e));
+    yield NotificationManager.error('Unsubscribe failure');
+  }
+}
+
+export function* getSubscribersSaga() {
+  try {
+    const response = yield axios.get('/users/subscribers');
+
+    yield put(getSubscribersSuccess(response.data));
+  } catch (e) {
+    yield put(getSubscribersFailure(e));
+    console.log(e);
   }
 }

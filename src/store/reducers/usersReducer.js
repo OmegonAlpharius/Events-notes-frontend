@@ -1,6 +1,9 @@
 import {
   CREATE_USER_FAILURE,
   CREATE_USER_SUCCESS,
+  GET_SUBSCRIBERS_FAILURE,
+  GET_SUBSCRIBERS_REQUEST,
+  GET_SUBSCRIBERS_SUCCESS,
   GET_USERS_FAILURE,
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,
@@ -10,6 +13,9 @@ import {
   SUBSCRIBE_USER,
   SUBSCRIBE_USER_FAILURE,
   SUBSCRIBE_USER_SUCCESS,
+  UNSUBSCRIBE_USER,
+  UNSUBSCRIBE_USER_FAILURE,
+  UNSUBSCRIBE_USER_SUCCESS,
 } from '../actionTypes';
 
 const initialState = {
@@ -44,6 +50,18 @@ const reducer = (state = initialState, action) => {
       return { ...state, error: action.error };
     case SUBSCRIBE_USER_SUCCESS:
       return { ...state, error: null };
+    case UNSUBSCRIBE_USER:
+      return { ...state, error: null };
+    case UNSUBSCRIBE_USER_FAILURE:
+      return { ...state, error: action.error };
+    case UNSUBSCRIBE_USER_SUCCESS:
+      return { ...state, error: null };
+    case GET_SUBSCRIBERS_REQUEST:
+      return { ...state };
+    case GET_SUBSCRIBERS_FAILURE:
+      return { ...state, error: action.error };
+    case GET_SUBSCRIBERS_SUCCESS:
+      return { ...state, subscribers: action.payload };
     default:
       return state;
   }

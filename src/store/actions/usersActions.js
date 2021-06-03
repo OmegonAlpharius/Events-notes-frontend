@@ -2,6 +2,9 @@ import {
   CREATE_USER,
   CREATE_USER_FAILURE,
   CREATE_USER_SUCCESS,
+  GET_SUBSCRIBERS_FAILURE,
+  GET_SUBSCRIBERS_REQUEST,
+  GET_SUBSCRIBERS_SUCCESS,
   GET_USERS_FAILURE,
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,
@@ -13,6 +16,9 @@ import {
   SUBSCRIBE_USER,
   SUBSCRIBE_USER_FAILURE,
   SUBSCRIBE_USER_SUCCESS,
+  UNSUBSCRIBE_USER,
+  UNSUBSCRIBE_USER_FAILURE,
+  UNSUBSCRIBE_USER_SUCCESS,
 } from '../actionTypes';
 
 export const createUserSuccess = () => {
@@ -67,4 +73,28 @@ export const subscribeUsersFailure = (payload) => {
 
 export const subscribeUsersSuccess = () => {
   return { type: SUBSCRIBE_USER_SUCCESS };
+};
+
+export const unsubscribeUser = (payload) => {
+  return { type: UNSUBSCRIBE_USER, payload };
+};
+
+export const unsubscribeUsersFailure = (payload) => {
+  return { type: UNSUBSCRIBE_USER_FAILURE, payload };
+};
+
+export const unsubscribeUsersSuccess = () => {
+  return { type: UNSUBSCRIBE_USER_SUCCESS };
+};
+
+export const getSubscribers = () => {
+  return { type: GET_SUBSCRIBERS_REQUEST };
+};
+
+export const getSubscribersFailure = (payload) => {
+  return { type: GET_SUBSCRIBERS_FAILURE, payload };
+};
+
+export const getSubscribersSuccess = (payload) => {
+  return { type: GET_SUBSCRIBERS_SUCCESS, payload };
 };
