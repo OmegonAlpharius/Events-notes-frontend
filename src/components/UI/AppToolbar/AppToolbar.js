@@ -10,6 +10,9 @@ import AnonymousMenu from './Menus/AnonymousMenu';
 import UserMenu from './Menus/UserMenu';
 
 const useStyles = makeStyles((theme) => ({
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
   mainLink: {
     color: 'inherit',
     textDecoration: 'none',

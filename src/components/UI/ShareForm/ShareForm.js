@@ -96,6 +96,7 @@ const ShareForm = ({ options = [], onSubmit }) => {
 
             return (
               <InputBase
+                placeholder='Share…'
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
