@@ -71,7 +71,7 @@ export function* getUsersSaga() {
 }
 export function* subscribeUserSaga({ payload }) {
   try {
-    const response = yield axios.post(`/users/subscribe?id=${payload}`);
+    const response = yield axios.post(`/users/subscribers?id=${payload}`);
     yield NotificationManager.success('Subscribe success');
     yield put(subscribeUsersSuccess(response.data));
     yield put(getSubscribers());
